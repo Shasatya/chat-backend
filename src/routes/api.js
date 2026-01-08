@@ -1,6 +1,8 @@
 import express from "express";
 import * as authController from "../controllers/authController.js";
 import * as chatController from "../controllers/chatController.js";
+import * as friendController from "../controllers/friendController.js";
+
 
 import { verifyToken } from "../lib/jwt.js";
 
