@@ -56,7 +56,7 @@ export async function getConversations(req, res) {
       );
 
       const otherUser = otherParticipant?.user;
-
+      const lastMsg = conv.messages[0];
       // console.log("otherUser ", otherUser);
 
       if (!conv.isGroup && !otherUser) {
@@ -69,6 +69,21 @@ export async function getConversations(req, res) {
         };
       }
 
+      // return {
+      //   id: conv.id,
+      //   name: conv.isGroup
+      //     ? conv.name || "Group"
+      //     : otherUser?.username || "Unknown",
+      //   isGroup: conv.isGroup,
+      //   otherUserId: otherUser?.id,
+      //   avatar: conv.isGroup ? null : otherUser.avatar,
+      //   lastMessage:
+      //     conv.messages[0]?.attachment === null
+      //       ? conv.messages[0]?.content
+      //       : "Image" || "No messages yet",
+      //   updatedAt: conv.updatedAt,
+      // };
+
       return {
         id: conv.id,
         name: conv.isGroup
@@ -76,11 +91,14 @@ export async function getConversations(req, res) {
           : otherUser?.username || "Unknown",
         isGroup: conv.isGroup,
         otherUserId: otherUser?.id,
-        avatar: conv.isGroup ? null : otherUser.avatar,
-        lastMessage:
-          conv.messages[0]?.attachment === null
-            ? conv.messages[0]?.content
-            : "Image" || "No messages yet",
+        avatar: conv.isGroup ? null : otherUser?.avatar,
+
+        lastMessage: lastMsg
+          ? lastMsg.attachment
+            ? "Media"
+            : lastMsg.content || ""
+          : "No messages yet",
+
         updatedAt: conv.updatedAt,
       };
     });
