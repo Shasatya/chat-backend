@@ -15,6 +15,7 @@ import { pubClient, subClient } from "./config/redis.js";
 
 const app = express();
 const server = createServer(app);
+const PORT = process.env.PORT || 4000;
 
 app.use(helmet());
 app.use(cors());
@@ -41,8 +42,8 @@ async function startServer() {
 
     socketManager(io);
 
-    server.listen(4000, () => {
-      console.log("Server listening on *:4000");
+    server.listen(PORT, () => {
+      console.log(`Server listening on *:${PORT}`);
     });
   } catch (e) {
     console.error("Failed to start server:", e);
