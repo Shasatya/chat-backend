@@ -150,19 +150,25 @@ Server runs on [http://localhost:4000](http://localhost:4000)
 ## Project Structure
 
 ```
-backend/
-├── src/
-│   ├── config/           # Configuration files
-│   ├── controllers/      # Request handlers
-│   ├── middleware/       # Auth, validation, etc.
-│   ├── routes/           # API routes
-│   ├── socket/           # Socket.io handlers
-│   ├── services/         # Business logic
-│   ├── utils/            # Helper functions
-│   └── index.js          # Entry point
+
+chat-backend/
+├── node_modules/
 ├── prisma/
-│   └── schema.prisma     # Database schema
-└── package.json
+│   └── schema.prisma    # Database schema
+├── src/
+│   ├── config/          # Configuration files
+│   ├── controllers/     # Request handlers
+│   ├── lib/             # Utilities and helpers
+│   ├── routes/          # API routes
+│   ├── sockets/         # Socket.io handlers
+│   └── index.js         # Entry point
+├── .env                 # Environment variables
+├── .gitignore
+├── docker-compose.yml   # Docker setup
+├── LICENSE
+├── package-lock.json
+├── package.json
+└── README.md
 ```
 
 ---
